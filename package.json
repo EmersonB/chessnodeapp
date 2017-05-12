@@ -1,0 +1,26 @@
+{
+  "name": "node-js-getting-started",
+  "version": "0.0.2",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "app3.js",
+  "scripts": {
+    "start": "node app3.js"
+  },
+  "dependencies": {
+    "express": "4.13.3",
+    "firebase": "3.7.4",
+    "firebase-admin": "latest",
+    "handlebars": "latest",
+    "cheerio": "latest",
+    "express-fileupload": "latest",
+    "body-parser": "latest"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}

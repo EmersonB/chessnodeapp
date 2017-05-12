@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    {{title}}
+  </br>
+    <select name="players" id="players">
+      <option value="Emerson Berlik">Emerson Berlik</option>
+      <option value="Isuru Attanagoda">Isuru Attanagoda</option>
+      <option value="Ben Lyons">Ben Lyons</option>
+      <option value="Minwu Kim">Minwu Kim</option>
+      <option value="Camden Wiseman">Camden Wiseman</option>
+      <option value="Eric Gan">Eric Gan</option>
+      <option value="Akhil Goel">Akhil Goel</option>
+      <option value="Ryan Xu">Ryan Xu</option>
+      <option value="Alex Jian">Alex Jian</option>
+      <option value="Rachel Naidich">Rachel Naidich</option>
+    </select>
+    <select name="score" id="score">
+      <option value="0">Loss</option>
+      <option value="0.5">Draw</option>
+      <option value="1">Win</option>
+    </select>
+    <select name="game" id="game">
+      <option value="1">Round 1</option>
+      <option value="2">Round 2</option>
+      <option value="3">Round 3</option>
+      <option value="4">Round 4</option>
+      <option value="5">Round 5</option>
+      <option value="6">Round 6</option>
+      <option value="7">Round 7</option>
+    </select>
+    <button id="submit">Submit</button>
+    <table id="table" style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Round 1</th>
+        <th>Round 2</th>
+        <th>Round 3</th>
+        <th>Round 4</th>
+        <th>Round 5</th>
+        <th>Round 6</th>
+        <th>Round 7</th>
+      </tr>
+    </table>
+  </br>
+  </body>
+  <script>
+        $.ajax({
+        url: 'http://localhost:8080/getplayers',
+        type: "GET",
+        cache: false,
+        timeout: 5000,
+        success: function(data) {
+          console.log(data);
+            var temp = "";
+            for(var x = 0; x<Object.keys(data).length; x++){
+              temp += "<tr>";
+              temp+="<th>"+Object.keys(data)[x]+"</th>"
+              for(var y = 0; y< data[Object.keys(data)[x]].length;y++){
+                temp+="<th>"+data[Object.keys(data)[x]][y]+"</th>"
+              }
+              temp+="<tr>";
+            }
+            console.log(temp);
+            $("#table").append(temp);
+        }
+      });
+      $("#submit").click( function() {
+        //console.log($('#name').val());
+        $.ajax({
+        url: 'http://localhost:8080/update',
+        type: "POST",
+        data: {
+            name: $('#players').find(":selected").val(),
+            score: $('#score').find(":selected").val(),
+            game: $('#game').find(":selected").val()-1
+        },
+        dataType: "jsonp",
+        cache: false,
+        timeout: 5000
+        // success: function(data) {
+        //     $("#test").append(data);
+        // },
+        // error: function(jqXHR, textStatus, errorThrown) {
+        //     alert('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown);
+        // }
+        });
+         });
+  </script>
+</html>
