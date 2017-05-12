@@ -49,7 +49,7 @@
   </body>
   <script>
         $.ajax({
-        url: 'http://localhost:8080/getplayers',
+        url: 'http://emersonberlik.com/getplayers',
         type: "GET",
         cache: false,
         timeout: 5000,
@@ -71,7 +71,7 @@
       $("#submit").click( function() {
         //console.log($('#name').val());
         $.ajax({
-        url: 'http://localhost:8080/update',
+        url: 'http://emersonberlik.com/update',
         type: "POST",
         data: {
             name: $('#players').find(":selected").val(),

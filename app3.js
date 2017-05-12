@@ -48,8 +48,8 @@ var listener = app.listen(app.get('port'), function() {
 
 app.get('/', function(req, res) {
 
-  var template = require( __dirname+'/home.hbs');
-  var data = { "title": "Emerson"};
+  var template = require( __dirname+'/nationals.hbs');
+  var data = { "title": "Super Nationals", "players": Object.keys(players).toString()};
   var result = template(data);
   res.send(result);
 
